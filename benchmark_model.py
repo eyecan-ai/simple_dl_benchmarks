@@ -19,9 +19,9 @@ with Progress() as progress:
         for r in range(repeats):
             x = torch.rand(1, 3, s, s).to(device)
             [model(x) for _ in range(2)]
-            t1 = time.perf_counter()
+            t1 = time.time()
             out = model(x)
-            t2 = time.perf_counter()
+            t2 = time.time()
             times_map[s].append(t2 - t1)
             progress.update(benchmark, advance=1)
         times_map[s] = np.array(times_map[s]).mean()
